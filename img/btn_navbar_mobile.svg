@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:none}
+        </style>
+    </defs>
+    <g id="prefix__btn_navbar_mobile" transform="translate(24 24)">
+        <path id="prefix__rectangle" d="M0 0H72V72H0z" class="prefix__cls-1"/>
+        <path id="prefix__path" d="M3 42h54v-6H3v6zm0-15h54v-6H3v6zM3 6v6h54V6z" transform="translate(6 12)" style="fill:#fff;fill-rule:evenodd"/>
+        <path id="prefix__slice" d="M0 0H120V120H0z" class="prefix__cls-1" transform="translate(-24 -24)"/>
+    </g>
+</svg>
