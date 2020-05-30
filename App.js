@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableWithoutFeedbac, TouchableOpacity, Linking } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { VictoryPie } from "victory-native";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -23,6 +24,8 @@ const UBIKE_URL =
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+
+const dataColor = ["#FF66FF", "#FFFF66"];
 
 function CustomDrawerContent(props) {
   return (
@@ -148,11 +151,26 @@ const App = () => {
             title={`${site.sna} ${site.sbi}/${site.tot}`}
             description={site.ar}
           >
-            <Image
+
+            <VictoryPie
+              radius={30}
+              data={[
+                { x: site.tot - site.sbi, y: 100 - (site.sbi / site.tot) * 100 },
+
+                { x: site.sbi, y: (site.sbi / site.tot) * 100 },
+              ]}
+              labelRadius={10}
+              colorScale={dataColor}
+              innerRadius={5}
+
+
+            />
+
+            {/* <Image
               source={require("./img/ubike.png")}
               style={{ width: 26, height: 28 }}
               resizeMode="contain"
-            />
+            /> */}
           </Marker>
         ))}
         <Marker
@@ -178,77 +196,6 @@ const App = () => {
         />
       )}
     </View>
-
-    // <NavigationContainer ref={navigationRef}>
-    //   <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}
-    //     drawerContentOptions={{
-    //       activeTintColor: '#fff',
-    //       inactiveTintColor: '#5c5c5c',
-    //       activeBackgroundColor: '#00b49f',
-    //       itemStyle: {
-    //         height: 60, width: 320,
-    //         marginLeft: 0, marginBottom: 0,
-    //         borderRadius: 0, bottom: 0
-    //       },
-    //       labelStyle: {
-    //         marginTop: 5,
-    //         marginLeft: 20
-    //       }
-    //     }}
-    //     initialRouteName='My Book'
-    //   >
-    //     <Drawer.Screen name="Home" component={Header}
-    //       options={{
-    //         drawerIcon: ({ focused }) => (
-    //           focused
-    //             ? <Image source={{ uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/touch/icon_drawer_home_pressed.png?raw=true" }} style={styles.bh} />
-    //             : <Image source={{ uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/icon_drawer_home.png?raw=true" }} style={styles.bh} />
-    //         )
-    //       }}
-    //     />
-    //     <Drawer.Screen name="My Book" component={Header}
-    //       options={{
-    //         drawerIcon: ({ focused }) => (
-    //           focused
-    //             ? <Image source={{ uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/touch/icon_drawer_mybook_pressed.png?raw=true" }} style={styles.bh} />
-    //             : <Image source={{ uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/icon_drawer_mybook.png?raw=true" }} style={styles.bh} />
-    //         )
-    //       }}
-    //     />
-    //     <Drawer.Screen name="Favorite" component={Header}
-    //       options={{
-    //         drawerIcon: ({ focused }) => (
-
-    //           <Image
-    //             style={styles.bh}
-    //             source={{ uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/icon_drawer_favorites.png?raw=true" }}
-    //           />
-    //         )
-    //       }}
-    //     />
-    //     <Drawer.Screen name="Setting" component={Header}
-    //       options={{
-    //         drawerIcon: ({ focused }) => (
-    //           <Image
-    //             style={styles.bh}
-    //             source={{ uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/icon_drawer_setting.png?raw=true" }}
-    //           />
-    //         )
-    //       }}
-    //     />
-    //     <Drawer.Screen name="About us" component={Header}
-    //       options={{
-    //         drawerIcon: ({ focused }) => (
-    //           <Image
-    //             style={styles.bh}
-    //             source={{ uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/icon_drawer_aboutus.png?raw=true" }}
-    //           />
-    //         )
-    //       }}
-    //     />
-    //   </Drawer.Navigator>
-    // </NavigationContainer>
-
   );
 }
 
